@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UFC Career Simulator Pro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">UFC Career Simulator</h1>
+
+        <div id="creation-screen">
+            <div class="creation-form">
+                <input type="text" id="custom-name" placeholder="Enter fighter's name" class="name-input">
+                <div class="button-group">
+                    <button class="btn" onclick="setCustomName()">Create Fighter</button>
+                    <button class="btn" onclick="generateFighter()">Random Name</button>
+                </div>
+                <div class="division-select">
+                    <h3>Choose Division:</h3>
+                    <select id="division-select" class="division-dropdown">
+                        <option value="Lightweight">Lightweight</option>
+                        <option value="Welterweight">Welterweight</option>
+                        <option value="Middleweight">Middleweight</option>
+                        <option value="Heavyweight">Heavyweight</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-interface" style="display: none;">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showTab('career')">Career</button>
+                <button class="tab-btn" onclick="showTab('training')">Training</button>
+                <button class="tab-btn" onclick="showTab('rankings')">Rankings</button>
+            </div>
+
+            <div id="career-tab" class="tab-content active">
+                <div class="fighter-info">
+                    <h2><span id="fighter-name" class="highlight" onclick="showDetailedStats()">Unknown</span></h2>
+                    <p>Division: <span id="fighter-division" class="highlight">-</span></p>
+                    <p>Record: <span id="fighter-record" class="highlight">0-0-0</span></p>
+                    <p>Rank: <span id="fighter-rank" class="rank">Unranked</span></p>
+                    <p>Stamina: <span id="stamina" class="highlight">100</span>%</p>
+                </div>
+                <div class="actions">
+                    <button class="btn action-btn" onclick="trainFighter()" id="train-btn">Train</button>
+                    <button class="btn action-btn" onclick="showOpponentSelection()" id="fight-btn">Choose Opponent</button>
+                    <button class="btn action-btn" onclick="rest()">Rest</button>
+                </div>
+                <div id="fight-result" class="result-box"></div>
+            </div>
+
+            <div id="training-tab" class="tab-content">
+                <div class="training-options">
+                    <div class="training-type" onclick="startTraining('striking')">
+                        <h3>Striking</h3>
+                        <p>Improves punching and kicking</p>
+                        <div class="progress-bar"><div class="progress" id="striking-bar"></div></div>
+                    </div>
+                    <div class="training-type" onclick="startTraining('grappling')">
+                        <h3>Grappling</h3>
+                        <p>Improves wrestling and submissions</p>
+                        <div class="progress-bar"><div class="progress" id="grappling-bar"></div></div>
+                    </div>
+                    <div class="training-type" onclick="startTraining('conditioning')">
+                        <h3>Conditioning</h3>
+                        <p>Improves stamina and recovery</p>
+                        <div class="progress-bar"><div class="progress" id="conditioning-bar"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="rankings-tab" class="tab-content">
+                <h3>Division Rankings</h3>
+                <div id="rankings-list" class="rankings-table"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="opponent-select" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Choose Opponent</h3>
+            <div id="opponent-list" class="rankings-table"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
